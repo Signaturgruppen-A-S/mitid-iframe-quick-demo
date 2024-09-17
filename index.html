@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MitID Iframe demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#fafafa">
+
+    <script>
+            var handler = function (event)
+            {
+                console.log("Brokerdemo: Received event:");
+                console.log(event);
+
+                if (event.data.command === 'ready')
+                {
+				    let authToken = prompt("Please enter the auth code:");
+                    var result = [];
+                    result["command"] = "auth_token";
+                    result["message"] = authToken;
+                    event.source.postMessage(result, "*");
+                    return;
+                };
+
+                if(event.data.command === 'authorization_code' || event.data.command === 'error'){
+                    document.getElementById("iframe_id").hidden = true;
+                    document.getElementById("result_id_header").hidden = false;
+                    document.getElementById("result_id").innerHTML = event.data.message;
+                }
+        };
+        window.addEventListener('message', handler);
+    </script>
+
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <figure class="logo"></figure>
+        </header>
+
+        <div class="content">
+            <h1>
+                MitID iframe integration
+            </h1>
+            <br/>
+            <p id="result_id_header" hidden="hidden">AuthCode: </p>
+            <p id="result_id"></p>
+            
+            <iframe style="height: 600px; width: 400px" src="https://netseidbroker.pp.mitid.dk/iframe" id="iframe_id"/>
+        </div>
+    </div>
+</body>
+
+</html>
