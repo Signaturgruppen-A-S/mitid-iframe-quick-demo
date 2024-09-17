@@ -1,6 +1,9 @@
 # mitid-iframe-quick-demo
 MitID iframe integration demo
 
+## Documentation
+https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/idps/mitid-iframe.html
+
 ## Quick start
 You need to be able to initialize a MitID iframe flow using the initialization API endpoint. 
 [Read the documentation](https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/idps/mitid-iframe.html) to get started. When you are able to retrieve new **auth_token**'s, continue with this quick demo.
